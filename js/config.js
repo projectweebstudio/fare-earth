@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_URL: "https://script.google.com/macros/s/AKfycbzsBa4mhfirAOOI0AGc16E7mxB07TL9pheya3lR64uykg-FeUl3xBOfvhP4fH_W6vk/exec",
+    API_URL: "https://script.google.com/macros/s/AKfycbzUBisX89gn65QoGmqUNPoRLhMy9KF7g47sD6rdxFIDFsYVw2D4X6rjkYz244CvZlA5/exec",
     PRODUCTS_JSON_URL: "products.json",
     TAX_RATE: 8,
     SHIPPING_CHARGE: 10,
