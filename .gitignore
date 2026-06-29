@@ -1,0 +1,33 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Google Apps Script backend (not deployed via GitHub - deploy directly from editor)
+googleScript_Backend/
+
+# Excel/DB files (not needed in production)
+*.xlsx
+*.xls
+*.db
+*.sqlite

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful — Fly On Earth</title>
+    <meta name="description" content="Your order has been placed successfully at Fly On Earth.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="header-portal"></div>
+
+<main class="section">
+    <div class="container">
+        <div class="success-box">
+            <span style="font-size:64px;display:block;margin-bottom:24px;">✅</span>
+            <h1 style="font-size:2.5rem;font-weight:800;margin-bottom:12px;">Order Successful!</h1>
+            <h2 id="order-id" style="font-size:1.1rem;color:#64748b;font-weight:500;margin-bottom:32px;"></h2>
+            <p style="color:#64748b;margin-bottom:32px;">Thank you for your purchase. You'll receive a confirmation email shortly with your order details.</p>
+            <a href="shop" class="btn btn-primary">Continue Shopping</a>
+        </div>
+    </div>
+</main>
+
+<div id="footer-portal"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js?v=2"></script>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("order-id").innerText = "Order ID: " + (params.get("orderId") || "N/A");
+</script>
+</body>
+</html>

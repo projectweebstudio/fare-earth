@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard — Fly On Earth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div id="header-portal"></div>
+
+<main class="section">
+    <div class="container">
+        <div class="dashboard-top" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Welcome back, <strong id="admin-name">Admin</strong></p>
+            </div>
+            <button class="btn btn-secondary" style="background:#ef4444;color:#fff;" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>Today's Orders</h3>
+                <div class="skeleton-container active" id="skeleton-today-orders">
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-heading"></div>
+                        <div class="skeleton skeleton-value"></div>
+                    </div>
+                </div>
+                <p id="today-orders" class="card-content">0</p>
+            </div>
+            <div class="card">
+                <h3>Revenue</h3>
+                <div class="skeleton-container active" id="skeleton-revenue">
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-heading"></div>
+                        <div class="skeleton skeleton-value"></div>
+                    </div>
+                </div>
+                <p id="revenue" class="card-content">$0</p>
+            </div>
+            <div class="card">
+                <h3>Pending Orders</h3>
+                <div class="skeleton-container active" id="skeleton-pending">
+                    <div class="skeleton-card">
+                        <div class="skeleton skeleton-heading"></div>
+                        <div class="skeleton skeleton-value"></div>
+                    </div>
+                </div>
+                <p id="pending" class="card-content">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-tabs">
+            <button id="orders-tab" class="dashboard-tab active" data-tab="orders">All Orders</button>
+            <button id="leads-tab" class="dashboard-tab" data-tab="leads">Leads</button>
+            <button id="export-tab" class="dashboard-tab" data-tab="export">Export</button>
+        </div>
+
+        <div id="orders-panel" class="tab-panel">
+            <h2>All Orders <span id="today-indicator" class="badge-today" style="display:none;">📅 Today's Orders</span></h2>
+            <div class="dashboard-summary-row">
+                <div class="mini-card">
+                    <h4>Today's Orders</h4>
+                    <p id="orders-today-count">0</p>
+                    <button id="today-orders-button" class="btn">Show Today's Orders</button>
+                </div>
+            </div>
+            <div class="filter-row">
+                <input type="text" id="search-order" placeholder="Search orders, customer, email, status" aria-label="Search orders">
+                <select id="filter-status" title="Filter by order status">
+                    <option value="">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <input type="date" id="filter-from" title="Filter from date" aria-label="Filter from date">
+                <input type="date" id="filter-to" title="Filter to date" aria-label="Filter to date">
+                <button id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Products</th>
+                            <th>Date</th>
+                            <th>Customer</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Subtotal</th>
+                            <th>Tax</th>
+                            <th>Shipping</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table"></tbody>
+                </table>
+                <div id="orders-pagination" class="pagination"></div>
+            </div>
+        </div>
+
+        <div id="leads-panel" class="tab-panel">
+            <h2>Contact Leads</h2>
+            <p>Contact form submissions are stored in the Contacts sheet and include built-in spam protection fields.</p>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="export-panel" class="tab-panel">
+            <h2>Export Orders</h2>
+            <p>Select order status and date range to export exactly the orders you need.</p>
+            <div class="filter-row">
+                <select id="export-filter-status" title="Export by status">
+                    <option value="">All Statuses</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Processing">Processing</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+                <input type="date" id="export-filter-from" aria-label="Export from date">
+                <input type="date" id="export-filter-to" aria-label="Export to date">
+                <button id="export-button" class="btn btn-primary">Export Filtered Orders CSV</button>
+            </div>
+            <p id="export-status" class="export-status"></p>
+            <div id="export-loading" class="export-filtered-list" style="display:none;text-align:center;padding:32px;">
+                <div class="loading-spinner"></div>
+                <p style="margin-top:8px;color:#64748b;">Loading orders for export...</p>
+            </div>
+            <div id="export-filtered-list" class="export-filtered-list" style="display:none;">
+                <h3>Filtered Orders <span style="font-weight:400;font-size:14px;color:#64748b;" id="export-filtered-count"></span></h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                        <tr>
+                                <th>Order ID</th>
+                                <th>Products</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Subtotal</th>
+                                <th>Tax</th>
+                                <th>Shipping</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="export-filtered-table"></tbody>
+                    </table>
+                    <div id="export-pagination" class="pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="footer-portal"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

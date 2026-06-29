@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly On Earth — Premium Products For Everyday Life</title>
+    <meta name="description"
+        content="Shop quality products at affordable prices. Fast shipping across the United States with 24/7 customer support.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/preloader.css?v=1">
+    <script src="js/preloader.js?v=3"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.title = CONFIG.STORE_NAME + " — Premium Products For Everyday Life";
+            document.querySelector('meta[name="description"]').setAttribute("content", `Shop quality products at affordable prices. Fast shipping across the United States with 24/7 customer support from ${CONFIG.STORE_NAME}.`);
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="header-portal"></div>
+
+    <section class="hero-section">
+        <div class="hero-background-wrapper">
+            <div class="hero-slide" style="background-image: url('images/s1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/s2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/s3.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/s4.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/s5.jpg');"></div>
+            <div class="hero-bg-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-badge animate-fade-in-up">🎮 Gaming Chair</span>
+                <h1 class="animate-fade-in-up delay-100"><span class="gradient-text">Elevate Your Gaming</span><br>Experience</h1>
+                <p class="animate-fade-in-up delay-200">Engineered for champions. Premium comfort, ergonomic support, and long-lasting durability for every gaming session.</p>
+                <div class="hero-actions animate-fade-in-up delay-300">
+                    <a href="shop" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="trust-icon-svg">
+                        <rect x="1" y="3" width="15" height="13"></rect>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                    <div class="trust-text">
+                        <strong>Free Shipping</strong>
+                        <span>On orders over $100</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="trust-icon-svg">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <div class="trust-text">
+                        <strong>Secure Checkout</strong>
+                        <span>SSL encrypted payment</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="trust-icon-svg">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                    </svg>
+                    <div class="trust-text">
+                        <strong>Easy Returns</strong>
+                        <span>30-day return policy</span>
+                    </div>
+                </div>
+                <div class="trust-item">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="trust-icon-svg">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <div class="trust-text">
+                        <strong>24/7 Support</strong>
+                        <span>Dedicated help center</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Now -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header-row">
+                <div>
+                    <h2>Trending Now</h2>
+                    <p>What everyone's talking about this week</p>
+                </div>
+                <a href="shop" class="btn btn-outline">View All</a>
+            </div>
+            <div class="product-grid" id="trending-products">
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-info">
+                        <div class="skeleton-text skeleton-category"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-rating"></div>
+                        <div class="skeleton-row">
+                            <div class="skeleton-text skeleton-price"></div>
+                            <div class="skeleton-btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-info">
+                        <div class="skeleton-text skeleton-category"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-rating"></div>
+                        <div class="skeleton-row">
+                            <div class="skeleton-text skeleton-price"></div>
+                            <div class="skeleton-btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-info">
+                        <div class="skeleton-text skeleton-category"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-rating"></div>
+                        <div class="skeleton-row">
+                            <div class="skeleton-text skeleton-price"></div>
+                            <div class="skeleton-btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-card">
+                    <div class="skeleton-image"></div>
+                    <div class="skeleton-info">
+                        <div class="skeleton-text skeleton-category"></div>
+                        <div class="skeleton-text skeleton-title"></div>
+                        <div class="skeleton-text skeleton-rating"></div>
+                        <div class="skeleton-row">
+                            <div class="skeleton-text skeleton-price"></div>
+                            <div class="skeleton-btn"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About FareEarth -->
+    <section class="section about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <span class="about-badge">About FareEarth</span>
+                    <h2>Premium Product Selection</h2>
+                    <p>At FareEarth, we offer a wide range of high-quality products designed to meet the needs of modern businesses. Our curated selection ensures reliability and excellence for your enterprise requirements.</p>
+                    <a href="shop" class="btn btn-primary">Explore Products</a>
+                </div>
+                <div class="about-visual">
+                    <div class="about-stats-grid">
+                        <div class="about-stat-card">
+                            <span class="about-stat-number">500+</span>
+                            <span class="about-stat-label">Products</span>
+                        </div>
+                        <div class="about-stat-card">
+                            <span class="about-stat-number">10K+</span>
+                            <span class="about-stat-label">Happy Customers</span>
+                        </div>
+                        <div class="about-stat-card">
+                            <span class="about-stat-number">99%</span>
+                            <span class="about-stat-label">Satisfaction Rate</span>
+                        </div>
+                        <div class="about-stat-card">
+                            <span class="about-stat-number">50+</span>
+                            <span class="about-stat-label">Brands</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section bg-gray">
+        <div class="container">
+            <div class="section-header-row center">
+                <div>
+                    <h2>Why Choose Fly On Earth</h2>
+                    <p>We're committed to delivering the best shopping experience</p>
+                </div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon-svg">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p>Every product is handpicked and vetted for quality and durability.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon-svg">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Free shipping on orders over $100. Most orders arrive within 3-5 business days.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon-svg">
+                            <path d="M6 3h12l4 6-10 13L2 9z"></path>
+                            <path d="M11 3 8 9l3 13 3-13-3-6z"></path>
+                            <path d="M2 9h20"></path>
+                        </svg>
+                    </div>
+                    <h3>Best Value</h3>
+                    <p>Premium products at prices that won't break the bank. Price match guaranteed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon-svg">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Customer First</h3>
+                    <p>Our support team is available 24/7 to help with any questions or concerns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="footer-portal"></div>
+
+    <script src="js/config.js?v=4"></script>
+    <script src="js/productService.js?v=1"></script>
+    <script src="js/app.js?v=4"></script>
+    <script src="js/home.js?v=4"></script>
+</body>
+</html>

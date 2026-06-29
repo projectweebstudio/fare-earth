@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fly On Earth</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        .container { max-width: 400px; }
+        h1 { font-size: 5rem; font-weight: 800; color: #b9935a; margin-bottom: 8px; }
+        h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
+        p { color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+        a {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        a:hover { background: #b9935a; }
+        .redirect-msg { font-size: 0.85rem; color: #94a3b8; margin-top: 16px; }
+    </style>
+    <script>
+        // GitHub Pages SPA fallback — redirects clean URLs to .html equivalents
+        (function() {
+            var path = location.pathname.replace(/\/+$/, '');
+            if (path === '' || path === '/') return;
+            
+            // Check if this is a clean URL (no .html extension)
+            if (!path.endsWith('.html')) {
+                // Store the intended redirect
+                sessionStorage.redirect = location.href;
+                
+                // Try the .html version
+                var newPath = path + '.html' + location.search + location.hash;
+                window.location.replace(newPath);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <a href="/">Back to Home</a>
+        <p class="redirect-msg">Redirecting to the correct page...</p>
+    </div>
+</body>
+</html>

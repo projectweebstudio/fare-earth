@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us — Fly On Earth</title>
+    <meta name="description" content="Get in touch with Fly On Earth. We're here to help.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="header-portal"></div>
+
+<main class="section">
+    <div class="container">
+        <div class="section-header-row center" style="margin-bottom:48px;">
+            <div>
+                <span class="hero-badge" style="background:#e2e8f0;color:#0f172a;border-color:#cbd5e1;margin-bottom:16px;">Get In Touch</span>
+                <h1 style="font-size:2.5rem;font-weight:800;">Contact Us</h1>
+                <p style="max-width:560px;margin:12px auto 0;font-size:1.05rem;">Have a question, feedback, or need help with an order? We'd love to hear from you. Send us a message and we'll get back to you within 24 hours.</p>
+            </div>
+        </div>
+
+        <div class="two-col-grid" style="max-width:960px;margin:0 auto;">
+            <div>
+                <form id="contact-form">
+                    <div class="form-grid">
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <input type="email" id="email" placeholder="Email" required>
+                        <input type="text" id="subject" placeholder="Subject" required style="grid-column:1/-1;">
+                        <textarea id="message" placeholder="Message" rows="6" required style="grid-column:1/-1;"></textarea>
+                        <input type="text" id="bot-field" name="bot-field" style="display:none" autocomplete="off">
+                        <input type="hidden" id="contact-timestamp" name="contact-timestamp" value="">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;" id="contact-submit-btn">Send Message</button>
+                </form>
+                <div id="contact-success" style="display:none;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:40px;text-align:center;margin-top:24px;">
+                    <div style="font-size:48px;margin-bottom:16px;">✅</div>
+                    <h3 style="font-size:1.35rem;font-weight:700;margin:0 0 8px;">Thank You!</h3>
+                    <p style="color:#475569;font-size:1.05rem;margin:0;">Thank you for your inquiry! We will get back to you within 48 hours.</p>
+                </div>
+            </div>
+            <div>
+                <div style="background:#f8fafc;border-radius:20px;padding:40px;border:1px solid #e2e8f0;">
+                    <h3 style="font-size:1.25rem;font-weight:700;margin:0 0 24px;">Contact Information</h3>
+                    <div style="display:flex;flex-direction:column;gap:20px;">
+                        <div>
+                            <span style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#64748b;font-weight:600;display:block;margin-bottom:4px;">Email</span>
+                            <a href="mailto:support@flyonearth.com" style="color:#0f172a;text-decoration:none;font-weight:500;">fareearth@yahoo.com</a>
+                        </div>
+                        <div>
+                            <span style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#64748b;font-weight:600;display:block;margin-bottom:4px;">Phone</span>
+                            <a href="tel:+18005551234" style="color:#0f172a;text-decoration:none;font-weight:500;">888-559-7886</a>
+                        </div>
+                        <div>
+                            <span style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#64748b;font-weight:600;display:block;margin-bottom:4px;">Hours</span>
+                            <span style="color:#0f172a;font-weight:500;">Mon-Fri: 9AM - 5PM </span>
+                        </div>
+                        <div>
+                            <span style="font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#64748b;font-weight:600;display:block;margin-bottom:4px;">Address</span>
+                            <span style="color:#0f172a;font-weight:500;">7533 S Center View CT STE 210<br>West Jordan, UT 84084, USA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="footer-portal"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js?v=2"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("contact-form");
+        const timestampField = document.getElementById("contact-timestamp");
+        if (timestampField) {
+            timestampField.value = new Date().toISOString();
+        }
+
+        const submitBtn = document.getElementById("contact-submit-btn");
+        const successMsg = document.getElementById("contact-success");
+
+        form?.addEventListener("submit", async event => {
+            event.preventDefault();
+
+            const botField = document.getElementById("bot-field").value;
+            if (botField.trim()) {
+                alert("Unable to submit form.");
+                return;
+            }
+
+            // Hide any previous success message
+            successMsg.style.display = "none";
+
+            // Show sending state
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = "Sending...";
+            submitBtn.disabled = true;
+
+            const data = {
+                action: "contactForm",
+                name: document.getElementById("name").value.trim(),
+                email: document.getElementById("email").value.trim(),
+                subject: document.getElementById("subject").value.trim(),
+                message: document.getElementById("message").value.trim(),
+                contactTimestamp: document.getElementById("contact-timestamp").value,
+                botField: botField
+            };
+
+            try {
+                const response = await fetch(CONFIG.API_URL, {
+                    method: "POST",
+                    body: JSON.stringify(data)
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    form.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    successMsg.style.display = "block";
+                    successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    alert(result.message || "Unable to submit your message. Please try again.");
+                }
+            } catch (error) {
+                console.error(error);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                alert("Unable to submit your message. Please try again.");
+            }
+        });
+    });
+</script>
+</body>
+</html>

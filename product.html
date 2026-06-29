@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product — Fly On Earth</title>
+    <meta name="description" content="View product details and add to cart at Fly On Earth.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body>
+
+<div id="header-portal"></div>
+
+<main class="section">
+    <div class="container">
+        <div id="product-details">
+            <div class="product-detail-container skeleton-detail">
+                <div class="product-image-section">
+                    <div class="skeleton-image-detail"></div>
+                </div>
+                <div class="product-info-section" style="display:flex;flex-direction:column;gap:16px;">
+                    <div class="skeleton-title-detail"></div>
+                    <div class="skeleton-desc-detail-1"></div>
+                    <div class="skeleton-desc-detail-2"></div>
+                    <div class="skeleton-desc-detail-3"></div>
+                    <div class="skeleton-rating-detail"></div>
+                    <div class="skeleton-price-detail"></div>
+                    <div class="skeleton-btn-detail"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Products Section -->
+        <div id="related-products-section" style="margin-top: 80px; border-top: 1px solid var(--border); padding-top: 60px; display: none;">
+            <h2 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 8px; color: var(--primary);">Related Products</h2>
+            <p style="color: var(--muted); margin-bottom: 32px;">Handpicked similar products you might also enjoy.</p>
+            <div class="product-grid" id="related-products"></div>
+        </div>
+    </div>
+</main>
+
+<div id="footer-portal"></div>
+
+<script src="js/config.js"></script>
+<script src="js/productService.js?v=1"></script>
+<script src="js/app.js?v=2"></script>
+<script src="js/product.js?v=2"></script>
+</body>
+
+</html>
