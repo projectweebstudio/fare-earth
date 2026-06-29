@@ -33,14 +33,17 @@
                         <div class="checkout-field">
                             <label for="customerName">Full Name</label>
                             <input type="text" id="customerName" placeholder="John Doe" required>
+                            <span class="checkout-field-error" id="customerName-error">Please enter your full name.</span>
                         </div>
                         <div class="checkout-field">
                             <label for="email">Email Address</label>
                             <input type="email" id="email" placeholder="john@example.com" required>
+                            <span class="checkout-field-error" id="email-error">Please enter a valid email address.</span>
                         </div>
                         <div class="checkout-field">
                             <label for="phone">Phone Number</label>
                             <input type="text" id="phone" placeholder="+1 (555) 000-0000" required>
+                            <span class="checkout-field-error" id="phone-error">Please enter your phone number.</span>
                         </div>
                     </div>
                 </div>
@@ -54,18 +57,22 @@
                         <div class="checkout-field checkout-field-full">
                             <label for="addressStreet">Street Address</label>
                             <input type="text" id="addressStreet" placeholder="123 Main Street, Apt 4B" required>
+                            <span class="checkout-field-error" id="addressStreet-error">Please enter your street address.</span>
                         </div>
                         <div class="checkout-field">
                             <label for="city">City</label>
                             <input type="text" id="city" placeholder="New York" required>
+                            <span class="checkout-field-error" id="city-error">Please enter your city.</span>
                         </div>
                         <div class="checkout-field">
                             <label for="state">State</label>
                             <input type="text" id="state" placeholder="NY" required>
+                            <span class="checkout-field-error" id="state-error">Please enter your state.</span>
                         </div>
                         <div class="checkout-field checkout-field-zip">
                             <label for="zipcode">Zip Code</label>
                             <input type="text" id="zipcode" placeholder="10001" required>
+                            <span class="checkout-field-error" id="zipcode-error">Please enter a valid zip code.</span>
                         </div>
                     </div>
                 </div>
@@ -81,6 +88,7 @@
                                 <a href="refund-policy" target="_blank">Refund Policy</a>.
                             </span>
                         </label>
+                        <span class="checkout-field-error" id="terms-error">You must agree to the terms to proceed.</span>
                     </div>
                 </div>
             </div>

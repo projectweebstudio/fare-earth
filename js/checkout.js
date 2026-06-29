@@ -11,6 +11,21 @@ document
 .getElementById("checkout-form")
 .addEventListener("submit", placeOrder);
 
+// Clear validation errors on input
+document.querySelectorAll("#checkout-form input").forEach(input => {
+    input.addEventListener("input", function() {
+        clearFieldError(this.id);
+    });
+    input.addEventListener("change", function() {
+        clearFieldError(this.id);
+    });
+});
+
+// Clear terms error on change
+document.getElementById("agree-terms")?.addEventListener("change", function() {
+    document.querySelector(".terms-checkbox-wrapper")?.classList.remove("field-invalid");
+});
+
 }
 
 function getCart() {
@@ -176,6 +191,107 @@ updateCartCount();
 renderSummary();
 }
 
+// Field validation helpers
+function showFieldError(fieldId, errorElementId) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    const parent = field.closest(".checkout-field") || field.parentElement;
+    if (parent) {
+        parent.classList.add("field-invalid");
+    }
+}
+
+function clearFieldError(fieldId) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    const parent = field.closest(".checkout-field") || field.parentElement;
+    if (parent) {
+        parent.classList.remove("field-invalid");
+    }
+}
+
+function clearAllFieldErrors() {
+    document.querySelectorAll(".checkout-field.field-invalid").forEach(el => {
+        el.classList.remove("field-invalid");
+    });
+    document.querySelector(".terms-checkbox-wrapper.field-invalid")?.classList.remove("field-invalid");
+}
+
+function validateEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePhone(phone) {
+    // Allow various phone formats: +1 (555) 000-0000, 555-000-0000, etc.
+    return phone.length >= 6;
+}
+
+function validateZipcode(zip) {
+    return zip.length >= 3;
+}
+
+function validateCheckoutForm() {
+    let isValid = true;
+    
+    // Reset all errors
+    clearAllFieldErrors();
+    
+    // Validate customer name
+    const name = document.getElementById("customerName").value.trim();
+    if (!name) {
+        showFieldError("customerName");
+        isValid = false;
+    }
+    
+    // Validate email
+    const email = document.getElementById("email").value.trim();
+    if (!email || !validateEmail(email)) {
+        showFieldError("email");
+        isValid = false;
+    }
+    
+    // Validate phone
+    const phone = document.getElementById("phone").value.trim();
+    if (!phone || !validatePhone(phone)) {
+        showFieldError("phone");
+        isValid = false;
+    }
+    
+    // Validate shipping address
+    const addressStreet = document.getElementById("addressStreet").value.trim();
+    if (!addressStreet) {
+        showFieldError("addressStreet");
+        isValid = false;
+    }
+    
+    const city = document.getElementById("city").value.trim();
+    if (!city) {
+        showFieldError("city");
+        isValid = false;
+    }
+    
+    const state = document.getElementById("state").value.trim();
+    if (!state) {
+        showFieldError("state");
+        isValid = false;
+    }
+    
+    const zipcode = document.getElementById("zipcode").value.trim();
+    if (!zipcode || !validateZipcode(zipcode)) {
+        showFieldError("zipcode");
+        isValid = false;
+    }
+    
+    // Validate terms
+    const agreeTerms = document.getElementById("agree-terms");
+    if (!agreeTerms || !agreeTerms.checked) {
+        document.querySelector(".terms-checkbox-wrapper")?.classList.add("field-invalid");
+        isValid = false;
+    }
+    
+    return isValid;
+}
+
 async function placeOrder(e){
 
 e.preventDefault();
@@ -183,13 +299,18 @@ e.preventDefault();
 const cart = getCart();
 
 if(cart.length===0){
-
-alert(
-"Cart is empty"
-);
-
+alert("Cart is empty");
 return;
+}
 
+// Run client-side validation with inline errors
+if (!validateCheckoutForm()) {
+    // Scroll to the first error
+    const firstInvalid = document.querySelector(".checkout-field.field-invalid, .terms-checkbox-wrapper.field-invalid");
+    if (firstInvalid) {
+        firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    return;
 }
 
 // Show processing overlay
@@ -210,14 +331,17 @@ const zipcode = document.getElementById("zipcode").value.trim();
 
 if(!addressStreet || !city || !state || !zipcode){
 hideProcessing();
-alert("Please complete your shipping address with street, city, state, and zip code.");
+showFieldError("addressStreet");
+showFieldError("city");
+showFieldError("state");
+showFieldError("zipcode");
 return;
 }
 
 const agreeTerms = document.getElementById("agree-terms");
 if(!agreeTerms || !agreeTerms.checked){
 hideProcessing();
-alert("You must agree to the Terms & Conditions, Privacy Policy, and Refund Policy before placing your order.");
+document.querySelector(".terms-checkbox-wrapper")?.classList.add("field-invalid");
 return;
 }
 
@@ -307,10 +431,34 @@ else{
 
 hideProcessing();
 
-alert(
-result.message
-);
+// Show server error as inline error on first field
+renderSystemNotice(result.message || "Order could not be processed. Please try again.");
 
 }
 
+}
+
+function renderSystemNotice(msg, flag = "error") {
+    // Create a general error banner at the top of the form if one doesn't exist
+    let banner = document.getElementById("checkout-form-alert");
+    if (!banner) {
+        banner = document.createElement("div");
+        banner.id = "checkout-form-alert";
+        banner.className = "checkout-form-alert";
+        const form = document.getElementById("checkout-form");
+        if (form) {
+            form.prepend(banner);
+        }
+    }
+    
+    banner.className = `checkout-form-alert ${flag}`;
+    banner.innerText = msg;
+    
+    // Scroll to the alert
+    banner.scrollIntoView({ behavior: "smooth", block: "center" });
+    
+    // Auto-hide after 8 seconds
+    setTimeout(() => {
+        banner.className = "checkout-form-alert hidden";
+    }, 8000);
 }

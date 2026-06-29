@@ -297,7 +297,18 @@ async function verifyOTP() {
 function setLoadingState(element, isLoading, textContent) {
     if (!element) return;
     element.disabled = isLoading;
-    element.innerHTML = textContent;
+    
+    const textSpan = element.querySelector(".btn-text");
+    const spinnerSpan = element.querySelector(".btn-spinner");
+    
+    if (textSpan && spinnerSpan) {
+        // Button has spinner structure
+        textSpan.classList.toggle("hidden", isLoading);
+        spinnerSpan.classList.toggle("hidden", !isLoading);
+    } else {
+        // Fallback for simple buttons
+        element.innerHTML = textContent;
+    }
 }
 
 function logout() {
