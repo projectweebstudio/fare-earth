@@ -99,7 +99,7 @@ function renderProduct(product) {
         </div>
     `;
 
-    document.title = `${product.productName} | Fly On Earth`;
+    document.title = `${product.productName} | Fare Earth`;
 
     if (typeof syncCartButtons === "function") {
         syncCartButtons();
